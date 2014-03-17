@@ -21,6 +21,7 @@
 		E049F08518D384570081AE7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E049F06718D384570081AE7F /* UIKit.framework */; };
 		E049F08D18D384570081AE7F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E049F08B18D384570081AE7F /* InfoPlist.strings */; };
 		E049F08F18D384570081AE7F /* Coffee_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E049F08E18D384570081AE7F /* Coffee_AppTests.m */; };
+		E049F09B18D476F30081AE7F /* DrinkRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E049F09A18D476F30081AE7F /* DrinkRecipeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		E049F08A18D384570081AE7F /* Coffee AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Coffee AppTests-Info.plist"; sourceTree = "<group>"; };
 		E049F08C18D384570081AE7F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E049F08E18D384570081AE7F /* Coffee_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Coffee_AppTests.m; sourceTree = "<group>"; };
+		E049F09918D476F30081AE7F /* DrinkRecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkRecipeViewController.h; sourceTree = "<group>"; };
+		E049F09A18D476F30081AE7F /* DrinkRecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkRecipeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +115,13 @@
 		E049F06918D384570081AE7F /* Coffee App */ = {
 			isa = PBXGroup;
 			children = (
-				E049F07218D384570081AE7F /* BaseAppDelegate.h */,
-				E049F07318D384570081AE7F /* BaseAppDelegate.m */,
 				E049F07518D384570081AE7F /* Main.storyboard */,
+				E049F09918D476F30081AE7F /* DrinkRecipeViewController.h */,
+				E049F09A18D476F30081AE7F /* DrinkRecipeViewController.m */,
 				E049F07818D384570081AE7F /* BaseViewController.h */,
 				E049F07918D384570081AE7F /* BaseViewController.m */,
 				E049F07B18D384570081AE7F /* Images.xcassets */,
+				E049F09818D397E60081AE7F /* Model */,
 				E049F06A18D384570081AE7F /* Supporting Files */,
 			);
 			path = "Coffee App";
@@ -126,6 +130,8 @@
 		E049F06A18D384570081AE7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E049F07218D384570081AE7F /* BaseAppDelegate.h */,
+				E049F07318D384570081AE7F /* BaseAppDelegate.m */,
 				E049F06B18D384570081AE7F /* Coffee App-Info.plist */,
 				E049F06C18D384570081AE7F /* InfoPlist.strings */,
 				E049F06F18D384570081AE7F /* main.m */,
@@ -150,6 +156,13 @@
 				E049F08B18D384570081AE7F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E049F09818D397E60081AE7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E049F07018D384570081AE7F /* main.m in Sources */,
+				E049F09B18D476F30081AE7F /* DrinkRecipeViewController.m in Sources */,
 				E049F07A18D384570081AE7F /* BaseViewController.m in Sources */,
 				E049F07418D384570081AE7F /* BaseAppDelegate.m in Sources */,
 			);
@@ -457,6 +471,7 @@
 				E049F09418D384570081AE7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E049F09518D384570081AE7F /* Build configuration list for PBXNativeTarget "Coffee AppTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +480,7 @@
 				E049F09718D384570081AE7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

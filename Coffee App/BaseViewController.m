@@ -8,7 +8,9 @@
 
 #import "BaseViewController.h"
 
-@interface BaseViewController ()
+@interface BaseViewController()
+@property (weak, nonatomic) IBOutlet UIView *imageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -18,6 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    NSLog(@"BaseViewController.viewDidLoad...");
 }
 
 - (void)didReceiveMemoryWarning

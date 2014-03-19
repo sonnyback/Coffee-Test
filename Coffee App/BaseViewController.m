@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationBar;
 @property (strong, nonatomic) NSMutableArray *arrayOfImages; // just for testing - will move to model later
+@property (nonatomic) NSInteger index; // index for tracking the array images
 @end
 
 @implementation BaseViewController
@@ -36,6 +37,7 @@
     //self.navigationBar.title = @"Search box goes here";
     UIColor *barColor = [UIColor colorWithRed:0.5 green:0.6 blue:0.8 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = barColor;
+    self.index = 0; // set the index to 0
     
     [self createImageViewer];
 }
@@ -53,6 +55,31 @@
         //[self updateUI];
         NSLog(@"Image touch recognized!");
     }
+}
+
+/**
+ * Method to animate rendered images. This is just for testing and will go away
+ * after implementing swipe gesture
+ *
+ * @param UIImageView *imgView
+ * @return void
+ */
+- (void)animateImages:(UIImageView *)imgView {
+    
+    NSLog(@"Entered animateImages");
+    self.arrayOfImages = [self loadImages]; // load the images to render
+    imgView.animationImages = self.arrayOfImages;
+    imgView.animationDuration = 6.0;
+    [imgView startAnimating];
+}
+
+
+- (void)displayInitialImage:(UIImageView *)imgView {
+    
+    NSLog(@"Entered displayImage");
+    self.arrayOfImages = [self loadImages];
+    //imgView.image = self.arrayOfImages[0]; // display the first image for initial rendering
+    imgView.image = [self.arrayOfImages firstObject]; // displays first object in the array for initial rendering
 }
 
 /**
@@ -78,19 +105,32 @@
     
     // create the image view and set its location equal to the scroll view
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(scrollViewLocationX, scrollViewLocationY, scrollViewWidth, scrollViewHeight)];
+    [imgView setUserInteractionEnabled:YES]; // let the user interact with the view
     NSLog(@"imgView width: %f, imgView height: %f", imgView.bounds.size.width, imgView.bounds.size.height);
     imgView.contentMode = UIViewContentModeScaleAspectFill;
-    imgView.clipsToBounds = YES;
+    imgView.clipsToBounds = YES; // neccessary to keep images from spilling past the bounds
+    /** HARD CODED JUST FOR TESTING PURPOSES
     //imgView.backgroundColor = [UIColor blackColor]; // just for testing
     //UIImage *testImage = [UIImage imageNamed:[NSString stringWithFormat:@"creamy_frozen_coffee"]]; // hard coded for testing only
     //imgView.image = testImage; // set the image in the view
+    **/
+    // set up left swipe - foward swipe gesture
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeImage:)];
+    [swipeLeft setNumberOfTouchesRequired:1];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [imgView addGestureRecognizer:swipeLeft]; // add gesture to the view
     
-    self.arrayOfImages = [self loadImages];
-    imgView.animationImages = self.arrayOfImages;
-    imgView.animationDuration = 5.0;
+    // set up right swipe - backwards swipe gesture
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeImage:)];
+    [swipeRight setNumberOfTouchesRequired:1];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [imgView addGestureRecognizer:swipeRight]; // add gesture to the view
+    
     
     [self.mainView addSubview:imgView]; // add the image view to the main view (imageView)
-    [imgView startAnimating];
+
+    //[self animateImages:imgView]; // call method to animate the images - just for testing
+    [self displayInitialImage:imgView];
 }
 
 - (NSMutableArray *)loadImages {
@@ -126,6 +166,29 @@
     //NSLog(@"arrayOfImages size: %d", [self.arrayOfImages count]);
     
     return arrayOfUIImages;
+}
+
+- (void)loadNextImage:(NSUInteger)index forView:(UIImageView *)imgView {
+    
+    NSLog(@"Entered LoadNextImage! index: %d view: %@", index, imgView);
+}
+
+- (IBAction)swipeImage:(UISwipeGestureRecognizer *)swipe {
+    
+    //NSLog(@"Entered swipeImage!");
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        
+        NSLog(@"Left/forward swipe!");
+        self.index++; // increment the index
+        NSLog(@"index: %d", self.index);
+        //[self loadNextImage:self.index forView:];
+    } else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        
+        NSLog(@"Right/backwards swipe!");
+        self.index--; // decremement the index
+         NSLog(@"index: %d", self.index);
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

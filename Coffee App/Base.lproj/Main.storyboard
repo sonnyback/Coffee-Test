@@ -25,15 +25,17 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </scrollView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hnG-yg-lwz"/>
                     <connections>
-                        <outlet property="imageView" destination="P2L-7h-GVG" id="0K0-cQ-5Xs"/>
+                        <outlet property="mainView" destination="P2L-7h-GVG" id="6ZF-ho-IYX"/>
+                        <outlet property="navigationBar" destination="hnG-yg-lwz" id="Afw-Rr-CY5"/>
                         <outlet property="scrollView" destination="7X1-bz-Jyu" id="b2h-29-Bjk"/>
+                        <segue destination="Jdh-sy-8eJ" kind="push" identifier="push to recipe" id="dLs-Mx-XD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -53,21 +55,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="cSf-Rl-OaJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FB-ik-uyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="648" y="36"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Perfect Coffee-->
         <scene sceneID="c4T-3m-ns1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rnQ-Ke-Kyc" sceneMemberID="viewController">
+                <navigationController title="Perfect Coffee" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="rnQ-Ke-Kyc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AxI-i6-ct8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="AxI-i6-ct8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Cdo-tZ-El3">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="cNI-lo-0Mk"/>
                     </connections>

@@ -35,6 +35,8 @@
     NSLog(@"BaseViewController.viewDidLoad!");
     /** TODO: Put nav bar attributes in a NSDictionary **/
     //self.navigationBar.title = @"Search box goes here";
+    self.scrollView.alwaysBounceHorizontal = YES;
+    [self.scrollView setScrollEnabled:YES];
     UIColor *barColor = [UIColor colorWithRed:0.5 green:0.6 blue:0.8 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = barColor;
     self.index = 0; // set the index to 0
@@ -78,8 +80,8 @@
     
     NSLog(@"Entered displayImage");
     self.arrayOfImages = [self loadImages];
-    //imgView.image = self.arrayOfImages[0]; // display the first image for initial rendering
-    imgView.image = [self.arrayOfImages firstObject]; // displays first object in the array for initial rendering
+    //imgView.image = [self.arrayOfImages firstObject]; // displays first object in the array for initial rendering
+    imgView.image = [self.arrayOfImages firstObject];
 }
 
 /**
@@ -109,13 +111,15 @@
     NSLog(@"imgView width: %f, imgView height: %f", imgView.bounds.size.width, imgView.bounds.size.height);
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds = YES; // neccessary to keep images from spilling past the bounds
+    self.scrollView.contentSize = imgView.frame.size;
+    
     /** HARD CODED JUST FOR TESTING PURPOSES
     //imgView.backgroundColor = [UIColor blackColor]; // just for testing
     //UIImage *testImage = [UIImage imageNamed:[NSString stringWithFormat:@"creamy_frozen_coffee"]]; // hard coded for testing only
     //imgView.image = testImage; // set the image in the view
     **/
     // set up left swipe - foward swipe gesture
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeImage:)];
+    /*UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeImage:)];
     [swipeLeft setNumberOfTouchesRequired:1];
     [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
     [imgView addGestureRecognizer:swipeLeft]; // add gesture to the view
@@ -124,10 +128,12 @@
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeImage:)];
     [swipeRight setNumberOfTouchesRequired:1];
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [imgView addGestureRecognizer:swipeRight]; // add gesture to the view
+    [imgView addGestureRecognizer:swipeRight]; // add gesture to the view*/
     
     
-    [self.mainView addSubview:imgView]; // add the image view to the main view (imageView)
+    //[self.mainView addSubview:imgView]; // add the image view to the main view (imageView)
+    [self.mainView addSubview:self.scrollView];
+    [self.scrollView addSubview:imgView];
 
     //[self animateImages:imgView]; // call method to animate the images - just for testing
     [self displayInitialImage:imgView];
